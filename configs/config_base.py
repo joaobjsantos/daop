@@ -3,8 +3,8 @@ import torch
 
 import os
 
-import data_processing_rotnet_torch
-import data_augmentation_torch
+import dataset.data_processing_rotnet_cifar as data_processing_rotnet_cifar
+import DA.data_augmentation_albumentations as data_augmentation_albumentations
 import net_models_torch
 import rotnet_torch
 import state_manager_torch
@@ -35,13 +35,13 @@ config['every_gen_state_reset'] = None
 # dataset configs
 config['dataset'] = "cifar10"
 config['dataset_file_name'] = "cifar-10-python.tar.gz"
-config['dataset_transforms'] = data_processing_rotnet_torch.dataset_transforms
+config['dataset_transforms'] = data_processing_rotnet_cifar.dataset_transforms
 config['dim'] = (32, 32, 3)
 config['num_classes'] = 10
 config['num_classes_pretext'] = 4
 config['num_classes_downstream'] = config['num_classes']
-config['load_dataset_func'] = data_processing_rotnet_torch.load_dataset
-config['data_loader_func'] = data_processing_rotnet_torch.create_data_loaders
+config['load_dataset_func'] = data_processing_rotnet_cifar.load_dataset
+config['data_loader_func'] = data_processing_rotnet_cifar.create_data_loaders
 config['cache_folder'] = "cache_cifar10_torch"
 config['output_csv_folder'] = "output_csv" + "_" + config['base_experiment_name']
 config['delete_cache'] = False
@@ -51,7 +51,7 @@ config['individual_evaluation_func'] = train_with_DA.train_and_evaluate_individu
 config['augment_dataset'] = True
 config['min_da_prob'] = 0.1
 config['max_da_prob'] = 0.9
-config['da_funcs'] = data_augmentation_torch.da_funcs_probs(config['min_da_prob'], config['max_da_prob'], config['dim'][:2])
+config['da_funcs'] = data_augmentation_albumentations.da_funcs_probs(config['min_da_prob'], config['max_da_prob'], config['dim'][:2])
 config['device'] = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device {config['device']}")
 # config['shuffle_dataset'] = False     # shuffle with sampler

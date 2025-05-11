@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 import os
 
 import rotnet_torch
-import data_augmentation_torch
+import daself.data_augmentation_albumentations as data_augmentation_albumentations
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
@@ -27,10 +27,10 @@ def load_dataset(individual, config):
 
     transform = A.Compose(transforms_before_augs + transforms_after_augs)
 
-    pretext_augs = data_augmentation_torch.map_augments(individual[0], config)
+    pretext_augs = data_augmentation_albumentations.map_augments(individual[0], config)
     transform_pretext_augs = A.Compose(transforms_before_augs + pretext_augs + transforms_after_augs)
 
-    downstream_augs = data_augmentation_torch.map_augments(individual[1], config)
+    downstream_augs = data_augmentation_albumentations.map_augments(individual[1], config)
     transform_downstream_augs = A.Compose(transforms_before_augs + downstream_augs + transforms_after_augs)
 
     if os.path.exists(os.path.join(config['cache_folder'], config['dataset_file_name'])):
