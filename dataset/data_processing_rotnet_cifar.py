@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 import os
 
 import rotnet_torch
-import daself.data_augmentation_albumentations as data_augmentation_albumentations
+import DA.data_augmentation_albumentations as data_augmentation_albumentations
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2

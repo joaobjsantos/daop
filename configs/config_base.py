@@ -22,7 +22,7 @@ ROTNET_DA = [[0, [1.0, 0.2, 0.2, 0.2, 0.2]], [1, [0.5, 0.5, 0.5, 0.5, 0.5]]]
 config = {}
 
 # experiment configs
-config['base_experiment_name'] = "optimize_simultaneous_100"
+config['base_experiment_name'] = "optimize_pretext"
 config['experiment_name'] = config['base_experiment_name']
 config['seeds'] = range(5)
 config['seed'] = config['seeds'][0]
@@ -56,8 +56,8 @@ config['device'] = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device {config['device']}")
 # config['shuffle_dataset'] = False     # shuffle with sampler
 config['evolution_type'] = "simultaneous"   # "same"/"simultaneous"
-config['fix_pretext_da'] = None     # FIX_PRETEXT_DA
-config['fix_downstream_da'] = None      # FIX_DOWNSTREAM_DA
+config['fix_pretext_da'] = None     # ROTNET_DA
+config['fix_downstream_da'] = ROTNET_DA      # ROTNET_DA
 # config['base_pretrained_pretext_model'] = os.path.join("models", "rn_pretext_0.pt")
 # config['pretrained_pretext_model'] = config['base_pretrained_pretext_model']
 # config['extended_pretrained_pretext_model'] = os.path.join("models", "rn_100_pretext_6.pt")
@@ -70,7 +70,7 @@ config['framework'] = 'torch'
 config['isSSL'] = True
 config['model'] = net_models_torch.TrainResNet18
 config['finetune_backbone'] = False
-config['base_epochs'] = 100
+config['base_epochs'] = 20
 config['epochs'] = config['base_epochs']
 config['extended_epochs'] = 100
 config['base_pretext_epochs'] = lambda: config['epochs']
@@ -94,6 +94,7 @@ config['save_downstream_model'] = None
 # config['save_downstream_model'] = config['base_experiment_name'] + "_downstream"
 config['shuffle_dataset'] = True
 config['confusion_matrix_config'] = None
+config['rotations_on_cuda'] = False
 # config['confusion_matrix_config'] = {
 #     'print_confusion_matrix': True,
 #     'confusion_matrix_folder': "output_confusion_matrix",
@@ -114,7 +115,7 @@ config['extended_isolated_run'] = False
 config['current_run_generations'] = 0
 config['max_generations_per_run'] = None
 config['start_gen'] = 1
-config['stop_gen'] = 200
+config['stop_gen'] = 220
 config['population_size'] = 5
 config['max_chromosomes'] = 5
 config['recalculate_best'] = True
@@ -125,5 +126,5 @@ config['da_func_mutation'] = chromosomes.random_da_func(len(config['da_funcs']))
 config['pr_mutation'] = chromosomes.random_pr_gaussian(0.1)
 config['mutation'] = mutations.mutate_remove_change_add_seq(0.66, 0.33, 0.66)
 config['evolution_mods'] = {
-    # 201: evolution_mod_functions.extended_gens
+    201: evolution_mod_functions.extended_gens
 }
