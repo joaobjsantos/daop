@@ -5,8 +5,8 @@ DAOP is a framework for data augmentation optimization using pytorch, and its in
 In order to execute the framework, please create a conda environment with the dependencies in the [conda_env_full.yml](conda_env_full.yml) file:
 
 ```bash
-conda activate daop
 conda env create -f conda_env_full.yml
+conda activate daop
 ```
 
 To execute the framework for the Pretext Optimization (PO) experiment, please run the following commands:
