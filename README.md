@@ -9,25 +9,25 @@ conda env create -f conda_env_full.yml
 conda activate daop
 ```
 
-To execute the framework for the Pretext Optimization (PO) experiment, please run the following commands:
+To execute the framework for the Pretext Optimization (PO) experiment, run the following command:
 
 ```bash
 python main_po.py {seeds separated by commas}
 ```
 
-To execute the framework for the Downstream Optimization (DO) experiment, please run the following commands:
+To execute the framework for the Downstream Optimization (DO) experiment, run the following command:
 
 ```bash
 python main_do.py {seeds separated by commas}
 ```
 
-To execute the framework for the Simultaenous Pretext and Downstream Optimization (DO) experiment, please run the following commands:
+To execute the framework for the Simultaenous Pretext and Downstream Optimization (DO) experiment, run the following command:
 
 ```bash
 python main_spdo.py {seeds separated by commas}
 ```
 
-To execute the framework for the Supervised Learning (SL) experiment, please run the following commands:
+To execute the framework for the Supervised Learning (SL) experiment, run the following command:
 
 ```bash
 
