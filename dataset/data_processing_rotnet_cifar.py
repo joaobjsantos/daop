@@ -28,9 +28,11 @@ def load_dataset(individual, config):
     transform = A.Compose(transforms_before_augs + transforms_after_augs)
 
     pretext_augs = data_augmentation_albumentations.map_augments(individual[0], config)
+    print(f"Pretext augs: {pretext_augs}")
     transform_pretext_augs = A.Compose(transforms_before_augs + pretext_augs + transforms_after_augs)
 
     downstream_augs = data_augmentation_albumentations.map_augments(individual[1], config)
+    print(f"Downstream augs: {downstream_augs}")
     transform_downstream_augs = A.Compose(transforms_before_augs + downstream_augs + transforms_after_augs)
 
     if os.path.exists(os.path.join(config['cache_folder'], config['dataset_file_name'])):

@@ -1,4 +1,4 @@
-name: daself
+name: daop
 channels:
   - pytorch
   - nvidia

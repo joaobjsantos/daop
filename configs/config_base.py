@@ -22,7 +22,7 @@ ROTNET_DA = [[0, [1.0, 0.2, 0.2, 0.2, 0.2]], [1, [0.5, 0.5, 0.5, 0.5, 0.5]]]
 config = {}
 
 # experiment configs
-config['base_experiment_name'] = "optimize_pretext"
+config['base_experiment_name'] = "optimize_spdo"
 config['experiment_name'] = config['base_experiment_name']
 config['seeds'] = range(5)
 config['seed'] = config['seeds'][0]
@@ -57,7 +57,7 @@ print(f"Using device {config['device']}")
 # config['shuffle_dataset'] = False     # shuffle with sampler
 config['evolution_type'] = "simultaneous"   # "same"/"simultaneous"
 config['fix_pretext_da'] = None     # ROTNET_DA
-config['fix_downstream_da'] = ROTNET_DA      # ROTNET_DA
+config['fix_downstream_da'] = None      # ROTNET_DA
 # config['base_pretrained_pretext_model'] = os.path.join("models", "rn_pretext_0.pt")
 # config['pretrained_pretext_model'] = config['base_pretrained_pretext_model']
 # config['extended_pretrained_pretext_model'] = os.path.join("models", "rn_100_pretext_6.pt")
@@ -67,7 +67,6 @@ config['extended_pretrained_pretext_model'] = None
 
 # model training configs
 config['framework'] = 'torch'
-config['isSSL'] = True
 config['model'] = net_models_torch.TrainResNet18
 config['finetune_backbone'] = False
 config['base_epochs'] = 20
